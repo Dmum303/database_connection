@@ -21,6 +21,9 @@ artist_repository = ArtistRepository.new
 # p artist_repository.all
 
 # Cleaner output
-artist_repository.all.each do |artist|
-    p artist
-end
+# artist_repository.all.each do |artist|
+#     p artist
+# end
+
+artist = artist_repository.find(4)
+puts artist.name

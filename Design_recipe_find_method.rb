@@ -134,6 +134,15 @@ class ArtistRepository
     # Returns an array of Artist objects.
   end
 
+  # Select a single record
+  # Given the id in argument (a numnber)
+  def find(id)
+  # Executes the SQL query:
+  # SELECT id, name, genre FROM artists WHERE id = $1;
+
+  # Returns a single artist
+  end
+
   # # Gets a single record by its ID
   # # One argument: the id (number)
   # def find(id)
@@ -174,6 +183,25 @@ artists = repo.all # the array
 artists.length #=> 2
 artists.first.id # => '1'
 artists.first.name # => 'Pixies'
+
+# 2
+# Get a single artist
+
+repo = ArtistRepository.new
+
+artist = repo.find(1)
+artist.name # => 'Pixies'
+artist.genre # => 'Rock'
+
+# 3
+# Get another single artist
+
+repo = ArtistRepository.new
+
+artist = repo.find(2)
+artist.name # => 'ABBA'
+artist.genre # => 'Pop'
+
 
 # students = repo.all
 
@@ -233,12 +261,3 @@ end
 
 _After each test you write, follow the test-driving process of red, green, refactor to implement the behaviour._
 
-<!-- BEGIN GENERATED SECTION DO NOT EDIT -->
-
----
-
-**How was this resource?**  
-[😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Frepository_class_recipe_template.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Frepository_class_recipe_template.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Frepository_class_recipe_template.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Frepository_class_recipe_template.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Frepository_class_recipe_template.md&prefill_Sentiment=😀)  
-Click an emoji to tell us.
-
-<!-- END GENERATED SECTION DO NOT EDIT -->

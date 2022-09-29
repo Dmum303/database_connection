@@ -134,25 +134,44 @@ class ArtistRepository
     # Returns an array of Artist objects.
   end
 
-  # # Gets a single record by its ID
-  # # One argument: the id (number)
-  # def find(id)
-  #   # Executes the SQL query:
-  #   # SELECT id, name, cohort_name FROM students WHERE id = $1;
+  # Select a single record
+  # Given the id in argument (a numnber)
+  def find(id)
+  # Executes the SQL query:
+  # SELECT id, name, genre FROM artists WHERE id = $1;
 
-  #   # Returns a single Student object.
-  # end
+  # Returns a single artist
+  end
 
-  # Add more methods below for each operation you'd like to implement.
+  # Insert a new artist record
+  # Takes a Artist object in argument
+  def create(artist)
+    # Executes the SQL query:
+    # INSERT INTO artists (name, genre) VALUES($1, $2);
+    #new values for oject will go where placeholders are $1, $2
 
-  # def create(student)
-  # end
+    # Doesn't need to return anything (only creates the record)
+  end
 
-  # def update(student)
-  # end
+  # Deletes an artist record
+  # given its id
+  def delete(artist)
+    # Executs the SQL:
+    # DELETE FROM artists WHERE id = $1;
 
-  # def delete(student)
-  # end
+    # returns nothing (only deletes the record)
+  end
+
+  #Updates an existing artist record
+  # Takes an Artist object (with the updated fields)
+  def update(artist)
+    #Executes the SQL:
+    # UPDATE artists SET name = $1, genre = $2 WHERE id - $3;
+
+    # Returns nothing (only updates the record)
+  end
+
+
 end
 ```
 
@@ -175,6 +194,41 @@ artists.length #=> 2
 artists.first.id # => '1'
 artists.first.name # => 'Pixies'
 
+# 2
+# Get a single artist
+
+repo = ArtistRepository.new
+
+artist = repo.find(1)
+artist.name # => 'Pixies'
+artist.genre # => 'Rock'
+
+# 3
+# Get another single artist
+
+repo = ArtistRepository.new
+
+artist = repo.find(2)
+artist.name # => 'ABBA'
+artist.genre # => 'Pop'
+
+#4
+# create new artist
+repo = ArtistRepository.new
+
+artist.name = 'ABBA GABBA'
+artist.genre = 'Gabber'
+
+repo.create(artist) # => nil 
+
+#check it worked
+
+artists = repo.all
+
+last_artist = artists.last
+last_artist.name # => 'ABBA GABBE'
+last_artist.genre # => ''Gabber'
+
 # students = repo.all
 
 # students.length # =>  2
@@ -190,13 +244,13 @@ artists.first.name # => 'Pixies'
 # 2
 # Get a single student
 
-repo = StudentRepository.new
+# repo = StudentRepository.new
 
-student = repo.find(1)
+# student = repo.find(1)
 
-student.id # =>  1
-student.name # =>  'David'
-student.cohort_name # =>  'April 2022'
+# student.id # =>  1
+# student.name # =>  'David'
+# student.cohort_name # =>  'April 2022'
 
 # Add more examples for each method
 ```
@@ -233,12 +287,3 @@ end
 
 _After each test you write, follow the test-driving process of red, green, refactor to implement the behaviour._
 
-<!-- BEGIN GENERATED SECTION DO NOT EDIT -->
-
----
-
-**How was this resource?**  
-[😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Frepository_class_recipe_template.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Frepository_class_recipe_template.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Frepository_class_recipe_template.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Frepository_class_recipe_template.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fdatabases&prefill_File=resources%2Frepository_class_recipe_template.md&prefill_Sentiment=😀)  
-Click an emoji to tell us.
-
-<!-- END GENERATED SECTION DO NOT EDIT -->
