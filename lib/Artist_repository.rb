@@ -43,4 +43,22 @@ class ArtistRepository
         return nil
     end
 
+    def delete(id)
+        # Always include where unless a good reason not to
+        sql = 'DELETE FROM artists WHERE id = $1;'
+        sql_params = [id]
+
+        DatabaseConnection.exec_params(sql, sql_params)
+
+        return nil
+    end
+
+    def update(artist)
+        sql = 'UPDATE artists SET name = $1, genre = $2 WHERE id = $3;'
+        sql_params = [artist.name, artist.genre, artist. id]
+
+        DatabaseConnection.exec_params(sql, sql_params)
+
+        return nil
+    end
 end

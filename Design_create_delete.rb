@@ -1,4 +1,4 @@
-# {{TABLE NAME}} Model and Repository Classes Design Recipe
+# {{Artists}} Model and Repository Classes Design Recipe
 
 _Copy this recipe template to design and implement Model and Repository classes for a database table._
 
@@ -81,6 +81,12 @@ end
 class ArtistRepository
 end
 
+class Album
+end
+
+class AlbumRepository
+end
+
 
 ## 4. Implement the Model class
 
@@ -98,6 +104,11 @@ class Artist
   # Replace the attributes by your own columns.
   attr_accessor :id, :name, :genre
 end
+
+class Album
+  attr_accessor :id, :title, :release_year, :artist_id
+end
+
 
 # The keyword attr_accessor is a special Ruby feature
 # which allows us to set and get attributes on an object,
@@ -166,11 +177,43 @@ class ArtistRepository
   # Takes an Artist object (with the updated fields)
   def update(artist)
     #Executes the SQL:
-    # UPDATE artists SET name = $1, genre = $2 WHERE id - $3;
+    # UPDATE artists SET name = $1, genre = $2 WHERE id = $3;
 
     # Returns nothing (only updates the record)
   end
 
+
+end
+
+class AlbumRepository
+
+  # Selecting all records
+  # No arguments
+  def all
+    # Executes the SQL query:
+    # SELECT id, title, release_year, artist_id FROM albums;
+
+    # Returns an array of Albums objects.
+  end
+
+  # Select a single record
+  # Given the id in argument (a numnber)
+  def find(id)
+  # Executes the SQL query:
+  # SELECT id, title, release_year, artist_id WHERE id = $1;
+
+  # Returns a single Album
+  end
+
+  # Insert a new Album record
+  # Takes a Album object in argument
+  def create(Album)
+    # Executes the SQL query:
+    # INSERT INTO albums (title, release_year, artist_id) VALUES($1, $2, $3);
+    #new values for oject will go where placeholders are $1, $2, $3
+
+    # Doesn't need to return anything (only creates the record)
+  end
 
 end
 ```
@@ -182,7 +225,7 @@ Write Ruby code that defines the expected behaviour of the Repository class, fol
 These examples will later be encoded as RSpec tests.
 
 ```ruby
-# EXAMPLES
+# EXAMPLES Artists
 
 # 1
 # Get all artists
@@ -229,6 +272,51 @@ last_artist = artists.last
 last_artist.name # => 'ABBA GABBE'
 last_artist.genre # => ''Gabber'
 
+# 5
+# Delete method, doesn't matter what we delete as seed will reset every run
+repo = ArtistRepository.new
+
+id_to_delete = 1 
+repo.delete(id_to_delete)
+
+all_artists = repo.all
+all_artists.length # => 1
+all_artists.first.id # => 2
+
+# 6
+# Updates an existing record
+
+repo = ArtistRepository.new
+
+artist = repo.find(1) 
+artist.name = 'Something else'
+artist.genre = 'Disco'
+
+repo.update(artist)
+
+updated_artist = repo.find(1)
+
+updated_artist.name # => 'Something else'
+updated_artist.genre # => 'Disco'
+
+
+# Examples albums 
+
+repository = AlbumRepository.new
+
+album = Album.new
+album.title = 'Trompe le Monde'
+album.release_year = 1991
+album.artist_id = 1
+
+repository.create(album)
+
+all_albums = repository.all
+all_albums.length => 3
+
+# Try an edge case with id out of range
+
+# The all_albums array should contain the new Album object
 # students = repo.all
 
 # students.length # =>  2
