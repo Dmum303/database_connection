@@ -198,12 +198,12 @@ class AlbumRepository
 
   # Select a single record
   # Given the id in argument (a numnber)
-  def find(id)
-  # Executes the SQL query:
-  # SELECT id, title, release_year, artist_id WHERE id = $1;
+  # def find(id)
+  # # Executes the SQL query:
+  # # SELECT id, title, release_year, artist_id WHERE id = $1;
 
-  # Returns a single Album
-  end
+  # # Returns a single Album
+  # end
 
   # Insert a new Album record
   # Takes a Album object in argument

@@ -20,7 +20,9 @@ class ArtistRepository
     end
 
     def find(id)
-        sql = 'SELECT id, name, genre FROM artists WHERE id = $1;'
+        sql = 'SELECT id, name, genre 
+        FROM artists 
+        WHERE id = $1;'
         sql_params = [id]
 
         result_set = DatabaseConnection.exec_params(sql, sql_params)
